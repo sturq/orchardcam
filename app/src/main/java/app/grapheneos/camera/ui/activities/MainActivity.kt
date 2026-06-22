@@ -608,6 +608,9 @@ open class MainActivity : AppCompatActivity(),
         imagePreview = binding.imagePreview
         previewView = binding.preview
         previewView.scaleType = PreviewView.ScaleType.FIT_START
+        // TextureView-backed preview: SurfaceView (PERFORMANCE) mode fails to provide a
+        // surface to our CameraEffect node, leaving the grade unapplied
+        previewView.implementationMode = PreviewView.ImplementationMode.COMPATIBLE
         previewContainer = binding.previewContainer
         bottomOverlay = binding.bottomOverlay
         scaleGestureDetector = ScaleGestureDetector(this, this)
