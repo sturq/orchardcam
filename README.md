@@ -54,14 +54,20 @@ The grade is one AGSL shader plus a handful of constants in
 shadow-lift, highlight-compression, undertone, and saturation values, or replace the shader
 with a sampled 3D LUT.
 
+## Install
+
+Download the latest APK from the [Releases page](https://github.com/sturq/peri/releases).
+It is signed with a bundled debug key, so installing requires allowing unknown sources.
+Android 13 (API 33) or newer is recommended so the grade is applied.
+
 ## Build
 
 ```
 ./gradlew assembleDebug
 ```
 
-CI builds a debug APK on every push; grab it from the latest run's artifacts under the
-Actions tab. Android 13 (API 33) or newer is recommended so the grade is applied.
+CI builds a debug APK on every push (artifacts under the Actions tab), and tagging `v*`
+publishes a signed APK to the Releases page via `.github/workflows/release.yml`.
 
 ## Credits
 
