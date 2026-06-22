@@ -91,7 +91,6 @@ dependencies {
     implementation("com.google.android.material:material:1.13.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation("androidx.core:core-ktx:1.17.0")
-    implementation("androidx.exifinterface:exifinterface:1.4.1")
 
     val cameraVersion = "1.6.0-alpha01"
     implementation("androidx.camera:camera-core:$cameraVersion")

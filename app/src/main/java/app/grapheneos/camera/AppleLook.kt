@@ -15,11 +15,10 @@ import android.graphics.RuntimeShader
 import android.graphics.Shader
 import android.hardware.HardwareBuffer
 import android.media.ImageReader
+import android.media.ExifInterface
 import android.os.Build
 import android.util.Log
-import androidx.exifinterface.media.ExifInterface
 import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
