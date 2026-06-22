@@ -1277,7 +1277,7 @@ class CamConfig(private val mActivity: MainActivity) {
                 val sessionConfig = SessionConfig(
                     useCases = useCasesList,
                     preferredFeatureGroup = preferredFeatures,
-                    effects = listOf(PeriEffect.get())
+                    effects = listOf(PeriEffect.get(isVideoMode))
                 )
 
                 camera = cameraProvider!!.bindToLifecycle(
@@ -1306,7 +1306,7 @@ class CamConfig(private val mActivity: MainActivity) {
                     val sessionConfig = SessionConfig(
                         useCases = newUseCaseList,
                         preferredFeatureGroup = newPreferredFeatures,
-                        effects = listOf(PeriEffect.get())
+                        effects = listOf(PeriEffect.get(true))
                     )
 
                     camera = cameraProvider!!.bindToLifecycle(

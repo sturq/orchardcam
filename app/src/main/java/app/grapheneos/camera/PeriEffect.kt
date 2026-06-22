@@ -37,17 +37,26 @@ import java.util.concurrent.Executor
  * blur for local tone mapping if the preview/photo mismatch is noticeable.
  */
 object PeriEffect {
-    private var effect: CameraEffect? = null
+    // one shared GL processor, reused across rebinds
+    private val processor by lazy { GradeProcessor() }
 
-    /** PREVIEW + VIDEO only; stills stay on AppleLook in ImageSaver. */
-    fun get(): CameraEffect {
-        effect?.let { return it }
-        return GradeEffect(GradeProcessor()).also { effect = it }
+    /**
+     * Targets must match the use cases bound in the current mode, or CameraX marks
+     * the effect unused. Photo mode binds preview (stills stay on AppleLook in
+     * ImageSaver); video mode binds preview + video.
+     */
+    fun get(videoMode: Boolean): CameraEffect {
+        val targets = if (videoMode) {
+            CameraEffect.PREVIEW or CameraEffect.VIDEO_CAPTURE
+        } else {
+            CameraEffect.PREVIEW
+        }
+        return GradeEffect(processor, targets)
     }
 }
 
-private class GradeEffect(processor: GradeProcessor) : CameraEffect(
-    CameraEffect.PREVIEW or CameraEffect.VIDEO_CAPTURE,
+private class GradeEffect(processor: GradeProcessor, targets: Int) : CameraEffect(
+    targets,
     processor.executor,
     processor,
     Consumer { t -> Log.w(TAG, "effect error", t) }
